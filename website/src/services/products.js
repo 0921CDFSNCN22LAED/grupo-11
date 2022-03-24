@@ -194,6 +194,12 @@ module.exports = {
         }
     },
 
+    async addToCart(body) {
+        await db.Transactions.create({
+            ...body
+        });
+    },
+
     async deleteOne(id, image, border, glass) {
         await db.ProductBorderColor.destroy({
             where: { id: border },

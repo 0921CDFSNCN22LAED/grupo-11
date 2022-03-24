@@ -1,7 +1,7 @@
 const db = require("../database/models");
 
 module.exports = {
-    addToCart: async (product_id) => {
+    cart: async (product_id) => {
         let product = await db.Products.findByPk(product_id);
         let order = {
             product_id: product.id,

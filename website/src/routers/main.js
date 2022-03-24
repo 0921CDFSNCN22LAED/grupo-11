@@ -7,8 +7,9 @@ const multerMiddlewareUsers = require("../middlewares/multerMiddlewareUsers");
 const guestMiddleware = require("../middlewares/guestMiddleware");
 const authMiddleware = require("../middlewares/authMiddleware");
 
+
 router.get("/", mainController.home);
-router.get("/cart", mainController.cart);
+router.get("/cart", authMiddleware, mainController.cart);
 router.get("/login", guestMiddleware, mainController.login);
 router.post("/login", mainController.loginProcess);
 router.get("/register", guestMiddleware, mainController.register);

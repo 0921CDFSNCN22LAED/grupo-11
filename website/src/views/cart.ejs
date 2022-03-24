@@ -10,16 +10,54 @@
     <%- include("./partials/header") %>
         <section>
             <main class="cart-content">
-                <div class="cart-header">
-                    <h1>Tu carrito</h1>
-                    <a href="/">Seguir comprando ></a>
+                <div class="cart-header pt-3 mt-2">
+                    <h1 class="display-5 fw-bolder">Your Cart</h1>
+                    
+                    <a href="/" class="underlined strong font-monospace fs-4">Continue Shopping ></a>
                 </div>
+                <hr />
 
-                <div class="cartitems">
+                <div class="cartitems container">
+                    <% if(transactions == undefined){ %> 
                     <p>Tu carrito está vacío</p>
                     <a href="/">
                         <i class="fas fa-shopping-cart icon-shop"></i>Seguir comprando
                     </a>
+                    <% }else{ %>
+                    <% for (transaction in transactions){ %>
+                        <div class="row border">
+                            <div class="col-3 border-end">
+                                <img src="<%= transactions[transaction].products.imageProducts.image1  %>" class = "w-100"alt="">
+                            </div>
+                            <div class="col-6 border-end p-3 text-left">
+                                <h3 class="text-shadow"><%= transactions[transaction].products.name %></h3>
+                                <h6 class="text-muted text-shadow">
+                                    <%=transactions[transaction].products.brand %> - <%= transactions[transaction].products.type %>
+                                </h6>
+                                <h6 class="text-muted strong text-shadow text-capitalize">Border Color: <%=transactions[transaction].border_color  %> </h6>
+                                <h6 class="text-muted strong text-shadow text-capitalize">Glass Color: <%=transactions[transaction].glass_color  %></h6>
+                            </div>
+                            <div class="col-3 p-3 text-left position-relative">
+                                <div class="position-absolute fixed-top text-end p-2">
+                                    <i class="bi bi-cart-x p-1 border border-1 border-danger text-danger"></i>
+                                </div>
+                                <h6 class="text-muted mt-3 text-shadow">
+                                    Quantity = <%=transactions[transaction].amount %> 
+                                </h6>
+                                <h6 class="text-muted text-shadow">
+                                    Price = $<%=transactions[transaction].products.price %> 
+                                </h6>
+                                <div class="position-absolute fixed-bottom p-3">
+                                    <hr>
+                                    <h6 class="text-muted strong text-shadow text-capitalize text-bot  ">
+                                        Total Price = $<%=transactions[transaction].products.price * transactions[transaction].amount %>
+                                    </h6>
+                                </div>
+                                
+                            </div>
+                            </div>
+                        </div> 
+                    <% }} %> 
                 </div>
 
             </main>

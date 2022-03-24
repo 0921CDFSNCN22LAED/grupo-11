@@ -4,16 +4,15 @@
 
         <h1 class="logo"><a href="/"><img src="/images/logo2.png" alt="" /></a></h1>
         <nav class="nav-bar">
+            <a href="/collections">Shop</a>
             <% if (locals.isLogged) { %>
-
-                <a href="/profile">Mi Cuenta</a>
-                <a href="/logout" class="button-product-edit">Logout</a>
-                <% }else{ %>
-                    <a href="/register">Creá tu cuenta</a>
-                    <a href="/login">Ingresá</a>
-                    <% } %>
-                        <a href="#">Mis Compras</a>
-                        <a href="#">Contacto</a>
+            <a href="/logout" >Logout</a>
+            <% }else{ %>
+            <a href="/register">Register</a>
+            <a href="/login">Log In</a>
+            <% } %>
+            
+            <a href="#">Contact</a>
         </nav>
 
 

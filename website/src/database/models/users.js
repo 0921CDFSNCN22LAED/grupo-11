@@ -12,7 +12,7 @@ module.exports = function (sequelize, dataTypes) {
         repassword: { type: dataTypes.STRING },
         adress_id: { type: dataTypes.INTEGER },
         photo_user: { type: dataTypes.STRING },
-        admin: {type: dataTypes.INTEGER}
+        admin: { type: dataTypes.INTEGER },
     };
     let config = {
         tableName: "users",
@@ -24,6 +24,10 @@ module.exports = function (sequelize, dataTypes) {
         Users.belongsTo(models.Adress, {
             as: "adress",
             foreignKey: "adress_id",
+        });
+        Users.hasMany(models.Transactions, {
+            as: "users",
+            foreignKey: "id",
         });
     };
     return Users;

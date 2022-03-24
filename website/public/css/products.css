@@ -218,13 +218,27 @@
     letter-spacing: 1px;
 }
 
-.circles {
+.circles-bc {
     height: 35px;
     width: 35px;
     background-color: var(--bg);
     border-radius: 50%;
     display: inline-block;
     border: 2px solid black;
+}
+.selected-bc {
+    border: 3px solid #dc3545 !important;
+}
+.circles-gc {
+    height: 35px;
+    width: 35px;
+    background-color: var(--bg);
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid black;
+}
+.selected-gc {
+    border: 3px solid #dc3545 !important;
 }
 
 .description {
@@ -265,6 +279,6 @@
     transition-delay: 0s;
 }
 
-.img-selected{
+.img-selected {
     display: block;
 }

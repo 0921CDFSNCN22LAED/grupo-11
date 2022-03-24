@@ -101,15 +101,34 @@
                             <h5 class="text-shadow pt-2 strong text-danger">
                                 $<%= product.price %>
                             </h5>
-                            <p class="text-muted text-shadow pt-2">Color:</p>
+                            <p class="text-muted text-shadow pt-2">
+                                Border Color:
+                            </p>
                             <div>
                                 <% for(columnName in columnNamesBorder){ %> <%
                                 if(product.ProductBorderColor[columnNamesBorder[columnName]]
                                 == 1){ %>
                                 <span
-                                    class="circles"
+                                    class="circles-bc"
+                                    id="border-<%=columnNamesBorder[columnName]%>"
                                     style="
                                         --bg: <%=columnNamesBorder[columnName]%>;
+                                    "
+                                ></span>
+                                <% }} %>
+                            </div>
+                            <p class="text-muted text-shadow pt-2">
+                                Glass Color:
+                            </p>
+                            <div>
+                                <% for(columnName in columnNamesGlass){ %> <%
+                                if(product.ProductGlassColor[columnNamesGlass[columnName]]
+                                == 1){ %>
+                                <span
+                                    class="circles-gc"
+                                    id="glass-<%=columnNamesGlass[columnName]%>"
+                                    style="
+                                        --bg: <%=columnNamesGlass[columnName]%>;
                                     "
                                 ></span>
                                 <% }} %>
@@ -125,21 +144,85 @@
                             <p class="text-shadow description">
                                 <%=product.description %>
                             </p>
+
                             <div class="text-shadow">
-                                <button
-                                    type="button"
-                                    class="btn btn-primary w-100"
+                                <form
+                                    action="/collections/<%= product.id %>"
+                                    method="post"
+                                    class="form-detail"
                                 >
-                                    <span class="button-text">ADD TO CART</span>
-                                </button>
+                                    <input
+                                        type="text"
+                                        class="d-none"
+                                        name="product_id"
+                                        value="<%= product.id%>"
+                                    />
+                                    <input type="text" class="d-none"
+                                    name="user_id" value= "<%= user ? user.id :
+                                    "" %>" />
+                                    <div class="glass-color">
+                                        <input
+                                            type="text"
+                                            class="d-none"
+                                            name="glass_color"
+                                            value=""
+                                        />
+                                    </div>
+                                    <div class="border-color">
+                                        <input
+                                            type="text"
+                                            class="d-none"
+                                            name="border_color"
+                                            value=""
+                                        />
+                                    </div>
+
+                                    <input
+                                        type="number"
+                                        class="my-3"
+                                        name="amount"
+                                        min="0"
+                                        max="10"
+                                        value="0"
+                                    />
+                                    <button
+                                        type="submit"
+                                        class="btn btn-primary w-100"
+                                    >
+                                        <span class="button-text"
+                                            >ADD TO CART
+                                        </span>
+                                    </button>
+                                </form>
                                 <button
-                                    type="button"
+                                    type="submit"
                                     class="btn btn-secondary w-100 mt-2"
                                 >
                                     <span class="button-text"
                                         >ADD TO WISHLIST
                                     </span>
                                 </button>
+                                <% if(user != undefined && user.admin == 1){ %>
+                                <div class="pt-3">
+                                    <a
+                                        href="/collections/<%= product.id %>/edit "
+                                        class="button-product-edit"
+                                        >Editar
+                                    </a>
+                                    <form
+                                        action="/collections/<%= product.id %>?_method=DELETE "
+                                        method="POST"
+                                        style="display: inline-flex"
+                                    >
+                                        <button
+                                            type="submit"
+                                            class="button-product-delete"
+                                        >
+                                            ELIMINAR
+                                        </button>
+                                    </form>
+                                </div>
+                                <% } %>
                             </div>
                         </div>
                     </div>

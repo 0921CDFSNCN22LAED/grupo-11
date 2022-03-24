@@ -32,10 +32,21 @@ const controller = {
                     .filter((columnName) => {
                         return columnName != "id";
                     }),
+                columnNamesGlass: productService
+                    .tableNames(db.ProductGlassColor)
+                    .filter((columnName) => {
+                        return columnName != "id";
+                    }),
             });
         } else {
             res.render("not-found");
         }
+    },
+
+    addToCart: async (req, res) => {
+        await productService.addToCart(req.body);
+        res.redirect(`/collections/${req.body.product_id}`);
+        console.log("product added succesfully");
     },
 
     create: async function (req, res) {

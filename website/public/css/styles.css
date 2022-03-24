@@ -326,8 +326,8 @@ body {
 .cartitems {
     display: flex;
     justify-content: center;
-    height: 358px;
-    padding: 10px;
+    min-height: 358px;
+    padding: 0px;
     text-align: center;
     border: 1px solid rgba(0, 0, 0, 0.15);
     box-shadow: 0 1px 4px 0 rgb(0 0 0 / 50%);

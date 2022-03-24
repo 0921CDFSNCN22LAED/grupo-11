@@ -32,11 +32,14 @@ module.exports = function (sequelize, dataTypes) {
             as: "ProductBorderColor",
             foreignKey: "borderColor_Id",
         });
-        Products.belongsTo(models.ProductBorderColor, {
+        Products.belongsTo(models.ProductGlassColor, {
             as: "ProductGlassColor",
             foreignKey: "glassColor_Id",
         });
-
+        Products.hasMany(models.Transactions,{
+            as:"products",
+            foreignKey: "id"
+        })
         //        Products.belongsToMany(models.Users, {
         //           as: "users",
         //          through: "user_shop",

@@ -6,8 +6,8 @@ const multerMiddleware = require("../middlewares/multerMiddleware");
 const userLoggedMiddleware = require("../middlewares/userLoggedMiddleware");
 const validateProdMiddleware = require("../middlewares/validateProdMiddleware");
 const validateUpdMiddleware = require("../middlewares/validateUpdMiddleware");
-const carritoController = require("../controllers/carritoController")
-
+const carritoController = require("../controllers/carritoController");
+const authMiddleware = require("../middlewares/authMiddleware");
 /*** GET ALL PRODUCTS ***/
 router.get("/", userLoggedMiddleware, productsController.collections);
 
@@ -22,6 +22,7 @@ router.post(
 
 /*** GET ONE PRODUCT ***/
 router.get("/:id/", userLoggedMiddleware, productsController.detail);
+router.post("/:id/", authMiddleware, productsController.addToCart);
 
 /*** EDIT ONE PRODUCT ***/
 router.get("/:id/edit", productsController.edit);
